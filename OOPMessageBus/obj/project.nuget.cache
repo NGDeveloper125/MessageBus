@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GllaSB8eVQG/4Qjy1rHYnRLKLkUHGf8lmaXjDD32MqMipAVBDRO2xIc6eCsVjE/+VN5Y1qHCvhZ9tS3nWkuuxQ==",
+  "dgSpecHash": "ym3SmgyE/8ZhbaH9VnrCLM3Cm5f7sC2bSLixlefnTmOjk2DM4sO+LhmfxK1Cp1FFBL6jJgBkNnRuo+D1P3p8qQ==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\MessageBus-Functional-vs-OOP\\OOPMessageBus\\OOPMessageBus.csproj",
+  "projectFilePath": "C:\\Projects\\MessageBus-Functional-vs-OOP\\OOPMEssageBus\\OOPMessageBus.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
