@@ -423,3 +423,8 @@ $RECYCLE.BIN/
 *.msp
 
 # Windows shortcuts
+
+# .NET
+bin/
+obj/
+
