@@ -1,28 +1,30 @@
-# MessageBus-Functional-vs-OOP
-Compering Functional and OOP approach In a Message Bus Service
-# Microservice Message Bus
+# MessageBus
 
-This project serves as a comparative exploration of two prominent programming paradigms: Object-Oriented Programming (OOP) and Functional Programming (FP). The primary focus is on developing a message bus for microservice infrastructure, facilitating seamless communication between services in a generic and straightforward manner.
+## Functional Message Bus with TDD and DDD
 
-## Technologies Used
+This project aims to develop a generic message bus for microservice infrastructure using a functional programming approach, guided by the principles of Test-Driven Development (TDD) and Domain-Driven Design (DDD). The message bus facilitates efficient and reliable communication between microservices in a clean and maintainable manner.
 
-- **Programming Language:** C#
-- **.NET Version:** 8
-- **Socket Library:** NetMQ
+### Technologies Used
+
+- Programming Language: C#
+- .NET Version: 8
+- Socket Library: NetMQ
+- Testing Framework: xUnit & NSubstitute
 
 ## Project Overview
 
-The microservice message bus is designed to showcase and compare the implementation styles of both Object-Oriented and Functional Programming. By utilizing C# with .NET 8 and NetMQ for handling sockets, this project provides a practical demonstration of how these programming paradigms can be applied to the microservices architecture.
+The MessageBus project focuses on creating a robust and scalable message bus that enables seamless communication between microservices. By leveraging functional programming techniques, the codebase is designed to be highly modular, testable, and maintainable. The adoption of TDD ensures that the system is thoroughly tested and reliable, while DDD principles help in creating a domain-centric clean architecture that aligns with the business requirements.
 
-## Features
+### Key Features
 
-- **Generic Communication:** Enables communication between microservices in a flexible and generic way.
-- **OOP and FP Implementation:** Illustrates both Object-Oriented and Functional Programming approaches for the same functionality.
+- **Generic Communication:** The message bus provides a generic interface for communication, allowing microservices to exchange messages without tight coupling.
+- **Functional Programming:** The codebase is implemented using functional programming principles, emphasizing immutability, pure functions, and composability.
+- **Test-Driven Development:** The development process follows a TDD approach, ensuring comprehensive test coverage and enabling confident refactoring.
+- **Domain-Driven Design:** The message bus is designed with DDD principles in mind, focusing on the core domain concepts and their interactions.
+- **NetMQ Integration:** The project utilizes the NetMQ library for efficient and reliable socket-based communication between microservices.
 
-## Getting Started
+### Contributing:
+Contributions to the MessageBus project are welcome! If you encounter any issues, have suggestions for improvements, or would like to add new features, please submit a pull request. Ensure that your contributions align with the project's coding standards and include appropriate tests.
 
-To get started with this project, follow these steps:
-
-1. **Clone the Repository:**
-   ```powershell
-   git clone https://github.com/your-username/microservice-message-bus.git
+### Contact:
+For any inquiries or questions regarding the MessageBus project, please contact me (Nimrod) at NGDeveloper@OutLook.com
