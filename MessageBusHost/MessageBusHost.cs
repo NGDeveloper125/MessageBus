@@ -1,33 +1,29 @@
-
-using FPMessageBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OOPMessageBus;
+using MessageBusDomain;
 
 namespace MessageBus;
 
 public class MessageBusHost : BackgroundService
 {
 
-    private OOPMessageBusService oOPMEssageBusService;
-    private ILogger<OOPMessageBusService> oOPLogger;
+    private readonly MessageBusDomain.MessageBus messageBus;
+    private readonly ILogger<MessageBusDomain.MessageBus> logger;
 
-    public MessageBusHost(IConfiguration configuration, 
-                             ILogger<OOPMessageBusService> oOPLogger, 
-                             OOPMessageBusService oOPMEssageBusService)
+    public MessageBusHost(ILogger<MessageBusDomain.MessageBus> logger, MessageBusDomain.MessageBus messageBus)
     {
-        this.oOPMEssageBusService = oOPMEssageBusService;
-        this.oOPLogger = oOPLogger;
+        this.messageBus = messageBus;
+        this.logger = logger;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
-            oOPLogger.LogInformation("Object-Oriented Message Bus starting!");
+            logger.LogInformation("Message Bus starting!");
 
-            _ = oOPMEssageBusService.Run(stoppingToken);
+            messageBus.Run(stoppingToken);
 
             while(!stoppingToken.IsCancellationRequested)
             {
@@ -36,7 +32,7 @@ public class MessageBusHost : BackgroundService
         }
         catch(Exception ex) 
         {
-            oOPLogger.LogError($"Object-Oriented Message Bus Fail: {ex.Message}");
+            logger.LogError($"MessageBus crashed: {ex.Message}");
             throw;
         }
     }
