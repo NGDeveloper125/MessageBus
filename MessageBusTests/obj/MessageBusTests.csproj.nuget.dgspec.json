@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\MessageBus-Functional-vs-OOP\\MessageBusTests\\MessageBusTests.csproj": {}
+    "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\MessageBus-Functional-vs-OOP\\MessageBusTests\\MessageBusTests.csproj": {
+    "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\MessageBus-Functional-vs-OOP\\MessageBusTests\\MessageBusTests.csproj",
+        "projectUniqueName": "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
         "projectName": "MessageBusTests",
-        "projectPath": "C:\\Projects\\MessageBus-Functional-vs-OOP\\MessageBusTests\\MessageBusTests.csproj",
-        "packagesPath": "C:\\Users\\NGDev\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\MessageBus-Functional-vs-OOP\\MessageBusTests\\obj\\",
+        "projectPath": "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
+        "packagesPath": "C:\\Users\\gnere\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\MessageBus\\MessageBusTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NGDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gnere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
