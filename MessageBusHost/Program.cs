@@ -1,9 +1,7 @@
-﻿using FPMessageBus;
-using MessageBus;
+﻿using MessageBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OOPMessageBus;
 using Serilog;
 
 IConfiguration configuration = new ConfigurationBuilder()
