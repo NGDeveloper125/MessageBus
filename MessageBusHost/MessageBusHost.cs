@@ -7,23 +7,17 @@ using OOPMessageBus;
 
 namespace MessageBus;
 
-public class MessageBusService : BackgroundService
+public class MessageBusHost : BackgroundService
 {
-    //Only one of each is needed - depande on which message bus you are running
-    // private FPMessageBusService fPMessageBusService;
+
     private OOPMessageBusService oOPMEssageBusService;
-    // private ILogger<FPMessageBusService> fpLogger;
     private ILogger<OOPMessageBusService> oOPLogger;
 
-    public MessageBusService(IConfiguration configuration, 
-                             //ILogger<FPMessageBusService> fPLogger, 
+    public MessageBusHost(IConfiguration configuration, 
                              ILogger<OOPMessageBusService> oOPLogger, 
-                             //FPMessageBusService fPMessageBusService,
                              OOPMessageBusService oOPMEssageBusService)
     {
-        //this.fPMessageBusService = fPMessageBusService;
         this.oOPMEssageBusService = oOPMEssageBusService;
-        //this.fpLogger = fPLogger;
         this.oOPLogger = oOPLogger;
     }
 
@@ -31,10 +25,8 @@ public class MessageBusService : BackgroundService
     {
         try
         {
-            // fpLogger.LogInformation("Functioanl Message Bus starting!");
             oOPLogger.LogInformation("Object-Oriented Message Bus starting!");
 
-            // _ = fPMessageBusService.Run(stoppingToken);
             _ = oOPMEssageBusService.Run(stoppingToken);
 
             while(!stoppingToken.IsCancellationRequested)
@@ -44,7 +36,6 @@ public class MessageBusService : BackgroundService
         }
         catch(Exception ex) 
         {
-            // fpLogger.LogError($"Functioanl Message Bus Fail: {ex.Message}");
             oOPLogger.LogError($"Object-Oriented Message Bus Fail: {ex.Message}");
             throw;
         }

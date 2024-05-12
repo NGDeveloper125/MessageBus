@@ -27,10 +27,7 @@ IHost host = Host.CreateDefaultBuilder ()
                  })
                  .ConfigureServices(services =>
                  {
-                    services.AddHostedService<MessageBusService>();
-                    // Only one of this is needed, depande on which mesage bus you want to use.
-                    services.AddSingleton<FPMessageBusService>();
-                    services.AddSingleton<OOPMessageBusService>();
+                    services.AddHostedService<MessageBusHost>();
                  })
                  .UseSerilog()
                  .Build();

@@ -13,9 +13,4 @@
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FPMessageBus\FPMessageBus.csproj" />
-    <ProjectReference Include="..\OOPMessageBus\OOPMessageBus.csproj" />
-  </ItemGroup>
-
 </Project>
