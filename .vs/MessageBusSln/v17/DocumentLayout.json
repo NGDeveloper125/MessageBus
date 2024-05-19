@@ -30,8 +30,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -42,8 +50,7 @@
               "RelativeToolTip": "MessageBusDomain\\PushSocket.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T17:07:38.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T17:07:38.322Z"
             },
             {
               "$type": "Document",
@@ -55,8 +62,7 @@
               "RelativeToolTip": "MessageBusDomain\\PullSocket.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T17:07:36.602Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T17:07:36.602Z"
             },
             {
               "$type": "Document",
@@ -68,8 +74,7 @@
               "RelativeToolTip": "MessageBusHost\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T16:49:47.014Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T16:49:47.014Z"
             },
             {
               "$type": "Document",
@@ -81,8 +86,7 @@
               "RelativeToolTip": "MessageBusHost\\MessageBusHost.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAQwBoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T16:49:47.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T16:49:47.719Z"
             },
             {
               "$type": "Document",
@@ -96,14 +100,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T16:47:14.342Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

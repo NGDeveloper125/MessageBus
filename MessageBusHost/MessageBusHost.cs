@@ -14,10 +14,10 @@ public class MessageBusHost : BackgroundService
     private readonly ILogger<PushSocket> pushSocketLogger;
     private readonly ILogger<PullSocket> pullSocketLogger;
 
-    public MessageBusHost(ILogger<MessageBusDomain.MessageBus> logger, IConfiguration configuration, MessageBusDomain.MessageBus messageBus)
+    public MessageBusHost(ILogger<MessageBusDomain.MessageBus> logger, IConfiguration configuration)
     {
-        this.messageBus = messageBus;
         this.logger = logger;
+        messageBus = new MessageBusDomain.MessageBus(logger, null);
         this.configuration = configuration;
     }
 
