@@ -30,6 +30,11 @@ public class MessageBus
         {
             return;
         }
+        QueueInfo queueInfo = QueueHandler.GetQueueInfo(queue);
+        if(queueInfo.Ids.Contains(messageWrapper.Id))
+        {
+            return;
+        }
         queue.Add(messageWrapper.GenerateQueueMessage());
     }
 
