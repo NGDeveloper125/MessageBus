@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using MessageBusDomain.Entities;
+using MessageBusDomain.Entities.Records;
+using System.Text.Json;
+using System.Text;
 
 namespace MessageBusDomain;
 
@@ -19,6 +22,24 @@ public class PushSocket
     public void Run(CancellationToken cancellationToken)
     {
 
+    }
+
+    public void HandleNewMessage(byte[] buffer)
+    {
+        Task.Run(() =>
+        {
+            try
+            {
+                string serializedMessage = Encoding.UTF8.GetString(buffer);
+                MessageWrapper? messageWrapper = JsonSerializer.Deserialize<MessageWrapper>(serializedMessage);
+                if (messageWrapper == null) return;
+                messageBus.HandleNewMessage(messageWrapper);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error while handling new message");
+            }
+        });
     }
 }
 

@@ -16,8 +16,8 @@ public class PullSocketInfo
 
         if (!IPAddress.TryParse(address, out var ipAddress)) throw new ArgumentException("Invalid IP address", nameof(address));
         if (!int.TryParse(port, out var portNumber) || int.Parse(port) < 1 || int.Parse(port) > 65535) throw new ArgumentException("Invalid port number", nameof(port));
-
-        Address = new Address(address);
+        string fullAddress = $@"tcp://{address}";
+        Address = new Address(fullAddress);
         Port = new Port(portNumber);
     }
 }
