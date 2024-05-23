@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using MessageBusDomain.Entities;
+using MessageBusDomain.Entities.Records;
+using System.Text;
+using System.Text.Json;
 
 namespace MessageBusDomain;
 
@@ -19,6 +22,22 @@ public class PullSocket
     public void Run(CancellationToken cancellationToken)
     {
 
+    }
+
+    public PulledMessage HandleNewRequestMessage(byte[] message)
+    {
+        RequestMsssage? requestMsssage = null;
+        try
+        {
+            string serializedMessage = Encoding.UTF8.GetString(message);
+            requestMsssage = JsonSerializer.Deserialize<RequestMsssage>(serializedMessage);
+        }
+        catch 
+        {
+
+        }
+        if (requestMsssage is null) return new PulledMessage(false, null!, PulledMessageIssue.FailedToDeSerializeMessage);
+        return messageBus.HandleRequestMessage(requestMsssage);
     }
 }
 
