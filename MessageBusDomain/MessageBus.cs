@@ -53,7 +53,7 @@ public class MessageBus
             return new PulledMessage(false, null!, PulledMessageIssue.NoMessageFoundWithThisId);
         }
 
-        queueMessage = QueueHandler.GetNextMessageByTopic(queue, requestMsssage.Topic);
+        queueMessage = QueueHandler.GetNextMessageByTopic(queue, requestMsssage.Topic!);
 
         if(queueMessage != null)
         {
