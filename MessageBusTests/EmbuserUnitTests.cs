@@ -9,18 +9,18 @@ using MessageBusDomain.Entities;
 using System.Text.Json;
 using System.Text;
 
-public class PushSockeUnitTests
+public class EmbuserUnitTests
 {
     private MessageBus messageBus;
-    private PushSocket pushSocket;
+    private Embuser embuser;
 
-    public PushSockeUnitTests()
+    public EmbuserUnitTests()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        ILogger<PushSocket> pushSocketLogger = NSubstitute.Substitute.For<ILogger<PushSocket>>();
+        ILogger<Embuser> embuserLogger = NSubstitute.Substitute.For<ILogger<Embuser>>();
         messageBus = new MessageBus(logger, new List<QueueMessage>());
         PushSocketInfo pushSocketInfo = new PushSocketInfo("0.0.0.0", "5555");
-        pushSocket = new PushSocket(pushSocketInfo, messageBus, pushSocketLogger);
+        embuser = new Embuser(pushSocketInfo, messageBus, embuserLogger);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class PushSockeUnitTests
         string serializedMessage = JsonSerializer.Serialize(messageWrapper);
         byte[] buffer = Encoding.UTF8.GetBytes(serializedMessage);
 
-        pushSocket.HandleNewMessage(buffer);
+        embuser.HandleNewMessage(buffer);
         QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(0);
@@ -43,7 +43,7 @@ public class PushSockeUnitTests
         string serializedMessage = JsonSerializer.Serialize(messageWrapper);
         byte[] buffer = Encoding.UTF8.GetBytes(serializedMessage);
 
-        pushSocket.HandleNewMessage(buffer);
+        embuser.HandleNewMessage(buffer);
         QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(0);
@@ -58,7 +58,7 @@ public class PushSockeUnitTests
         string serializedMessage = JsonSerializer.Serialize(messageWrapper);
         byte[] buffer = Encoding.UTF8.GetBytes(serializedMessage);
 
-        pushSocket.HandleNewMessage(buffer);
+        embuser.HandleNewMessage(buffer);
         await Task.Delay(1000);
 
         QueueInfo queueInfo = messageBus.GetQueueInfo();
@@ -73,7 +73,7 @@ public class PushSockeUnitTests
         string serializedMessage = JsonSerializer.Serialize(messageWrapper);
         byte[] buffer = Encoding.UTF8.GetBytes(serializedMessage);
 
-        pushSocket.HandleNewMessage(buffer);
+        embuser.HandleNewMessage(buffer);
         await Task.Delay(1000);
 
         QueueInfo queueInfo = messageBus.GetQueueInfo();

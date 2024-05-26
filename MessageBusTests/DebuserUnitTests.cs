@@ -10,18 +10,18 @@ using System.Text;
 
 namespace MessageBusTests;
 
-public class PullSocketUnitTests
+public class DebuserUnitTests
 {
     private  MessageBus messageBus;
-    private PullSocket pullSocket;
+    private Debuser debuser;
 
-    public PullSocketUnitTests()
+    public DebuserUnitTests()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        ILogger<PullSocket> pullSocketLogger = NSubstitute.Substitute.For<ILogger<PullSocket>>();
+        ILogger<Debuser> pullSocketLogger = NSubstitute.Substitute.For<ILogger<Debuser>>();
         messageBus = new MessageBus(logger, new List<QueueMessage>());
         PullSocketInfo pullSocketInfo = new PullSocketInfo("0.0.0.0", "5555");
-        pullSocket = new PullSocket(pullSocketInfo, messageBus, pullSocketLogger);
+        debuser = new Debuser(pullSocketInfo, messageBus, pullSocketLogger);
     }
 
     
@@ -31,7 +31,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize("requestMsssage");
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
         pulledMessage.Issue.Should().Be(PulledMessageIssue.FailedToDeSerializeMessage);
@@ -44,7 +44,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize(requestMsssage);
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
         pulledMessage.Issue.Should().Be(PulledMessageIssue.NoTopicOrIdProvided);
@@ -59,7 +59,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize(requestMsssage);
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
         pulledMessage.Issue.Should().Be(PulledMessageIssue.NoMessageFoundWithThisId);
@@ -76,7 +76,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize(requestMsssage);
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeTrue();
         pulledMessage.Payload.Should().Be("payload");
@@ -90,7 +90,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize(requestMsssage);
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
         pulledMessage.Issue.Should().Be(PulledMessageIssue.NoMessageFoundForThisTopic);
@@ -106,7 +106,7 @@ public class PullSocketUnitTests
         string serializedMessage = JsonSerializer.Serialize(requestMsssage);
         byte[] message = Encoding.UTF8.GetBytes(serializedMessage);
 
-        PulledMessage pulledMessage = pullSocket.HandleNewRequestMessage(message);
+        PulledMessage pulledMessage = debuser.HandleNewRequestMessage(message);
 
         pulledMessage.SuccessfullyPulled.Should().BeTrue();
         pulledMessage.Payload.Should().Be("payload");

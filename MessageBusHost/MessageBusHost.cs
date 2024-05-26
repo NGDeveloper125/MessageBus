@@ -11,8 +11,8 @@ public class MessageBusHost : BackgroundService
     private readonly IConfiguration configuration;
     private readonly MessageBusDomain.MessageBus messageBus;
     private readonly ILogger<MessageBusDomain.MessageBus> logger;
-    private readonly ILogger<PushSocket> pushSocketLogger;
-    private readonly ILogger<PullSocket> pullSocketLogger;
+    private readonly ILogger<Embuser> EmbuserLogger;
+    private readonly ILogger<Debuser> DebuserLogger;
 
     public MessageBusHost(ILogger<MessageBusDomain.MessageBus> logger, IConfiguration configuration)
     {
@@ -28,17 +28,17 @@ public class MessageBusHost : BackgroundService
             PushSocketInfo pushSocketInfo = new PushSocketInfo(configuration["PushSocket:Address"], configuration["PushSocket:Port"]);
             PullSocketInfo pullSocketInfo = new PullSocketInfo(configuration["PullSocket:Address"], configuration["PullSocket:Port"]);
 
-            PushSocket pushSocket = new PushSocket(pushSocketInfo, messageBus, pushSocketLogger);
-            PullSocket pullSocket = new PullSocket(pullSocketInfo, messageBus, pullSocketLogger);
+            Embuser embuser = new Embuser(pushSocketInfo, messageBus, EmbuserLogger);
+            Debuser debuser = new Debuser(pullSocketInfo, messageBus, DebuserLogger);
 
             logger.LogInformation("Message Bus starting..");   
             messageBus.Run(stoppingToken);  
 
             logger.LogInformation($"Push Socket starting on  {pushSocketInfo.Address} port: {pushSocketInfo.Port}");   
-            Task.Run(() => { pushSocket.Run(stoppingToken); });
+            Task.Run(() => { embuser.Run(stoppingToken); });
 
             logger.LogInformation($"Pull Socket starting on {pullSocketInfo.Address} port: {pullSocketInfo.Port}");   
-            Task.Run(() => { pullSocket.Run(stoppingToken); });
+            Task.Run(() => { debuser.Run(stoppingToken); });
 
             logger.LogInformation("Message Bus Running");   
             while(!stoppingToken.IsCancellationRequested)
