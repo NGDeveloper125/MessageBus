@@ -6,14 +6,14 @@ using System.Text.Json;
 
 namespace MessageBusDomain;
 
-public class PullSocket
+public class Debuser
 {
     private readonly MessageBus messageBus;
     private readonly PullSocketInfo pullSocketInfo;
 
-    private readonly ILogger<PullSocket> logger;
+    private readonly ILogger<Debuser> logger;
 
-    public PullSocket(PullSocketInfo pullSocketInfo, MessageBus messageBus, ILogger<PullSocket> logger)
+    public Debuser(PullSocketInfo pullSocketInfo, MessageBus messageBus, ILogger<Debuser> logger)
     {
         this.messageBus = messageBus;
         this.pullSocketInfo = pullSocketInfo;

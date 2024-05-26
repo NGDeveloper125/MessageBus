@@ -3,17 +3,18 @@ using MessageBusDomain.Entities;
 using MessageBusDomain.Entities.Records;
 using System.Text.Json;
 using System.Text;
+using NetMQ.Sockets;
+using NetMQ;
 
 namespace MessageBusDomain;
 
-public class PushSocket
+public class Embuser
 {
     private readonly MessageBus messageBus;
     private readonly PushSocketInfo pushSocketInfo;
+    private readonly ILogger<Embuser> logger;
 
-    private readonly ILogger<PushSocket> logger;
-
-    public PushSocket(PushSocketInfo pushSocketInfo, MessageBus messageBus, ILogger<PushSocket> logger)
+    public Embuser(PushSocketInfo pushSocketInfo, MessageBus messageBus, ILogger<Embuser> logger)
     {
         this.messageBus = messageBus;
         this.pushSocketInfo = pushSocketInfo;
@@ -21,7 +22,22 @@ public class PushSocket
     }
     public void Run(CancellationToken cancellationToken)
     {
-
+        using (var socket = new PullSocket())
+        {
+            socket.Bind($"tcp://{pushSocketInfo.Address.AddressString}:{pushSocketInfo.Port.PortNumber}");
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                try
+                {
+                    byte[] buffer = socket.ReceiveFrameBytes();
+                    HandleNewMessage(buffer);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Error while receiving new message");
+                }
+            }
+        }
     }
 
     public void HandleNewMessage(byte[] buffer)
