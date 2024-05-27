@@ -24,7 +24,7 @@ public class Embuser
     {
         using (var socket = new PullSocket())
         {
-            socket.Bind($"tcp://{pushSocketInfo.Address.AddressString}:{pushSocketInfo.Port.PortNumber}");
+            socket.Bind($"{pushSocketInfo.Address.AddressString}:{pushSocketInfo.Port.PortNumber}");
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
