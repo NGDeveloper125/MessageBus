@@ -20,7 +20,7 @@ public class DebuserUnitTests
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         ILogger<Debuser> pullSocketLogger = NSubstitute.Substitute.For<ILogger<Debuser>>();
         messageBus = new MessageBus(logger, new List<QueueMessage>());
-        PullSocketInfo pullSocketInfo = new PullSocketInfo("0.0.0.0", "5555");
+        DebuserInfo pullSocketInfo = new DebuserInfo("0.0.0.0", "5555");
         debuser = new Debuser(pullSocketInfo, messageBus, pullSocketLogger);
     }
 

@@ -5,32 +5,59 @@ using System.Text.Json;
 using System.Text;
 using NetMQ.Sockets;
 using NetMQ;
+using System.Net.Sockets;
 
 namespace MessageBusDomain;
 
 public class Embuser
 {
     private readonly MessageBus messageBus;
-    private readonly PushSocketInfo pushSocketInfo;
+    private readonly EmbuserInfo embuserInfo;
     private readonly ILogger<Embuser> logger;
 
-    public Embuser(PushSocketInfo pushSocketInfo, MessageBus messageBus, ILogger<Embuser> logger)
+    public Embuser(EmbuserInfo embuserInfo, MessageBus messageBus, ILogger<Embuser> logger)
     {
         this.messageBus = messageBus;
-        this.pushSocketInfo = pushSocketInfo;
+        this.embuserInfo = embuserInfo;
         this.logger = logger;
     }
+    // public Task Run(CancellationToken cancellationToken)
+    // {
+    //     using (var socket = new RouterSocket($"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}"))
+    //     {
+    //         while (!cancellationToken.IsCancellationRequested)
+    //         {
+    //             try
+    //             {
+    //                 RoutingKey routingKey = socket.ReceiveRoutingKey();
+    //                 string msg = socket.ReceiveFrameString();
+    //                 byte[] message = socket.ReceiveFrameBytes();
+    //                 HandleNewMessage(message);
+    //             }
+    //             catch (Exception ex)
+    //             {
+    //                 logger.LogError(ex, "Error while receiving new message");
+    //             }
+    //         }
+    //         return Task.CompletedTask;
+    //     }
+    // }
+
     public void Run(CancellationToken cancellationToken)
     {
-        using (var socket = new PullSocket())
+        using (var socket = new RouterSocket($"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}"))
         {
-            socket.Bind($"{pushSocketInfo.Address.AddressString}:{pushSocketInfo.Port.PortNumber}");
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
                 {
-                    byte[] buffer = socket.ReceiveFrameBytes();
-                    HandleNewMessage(buffer);
+                    RoutingKey routingKey;
+                    if (socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
+                    {
+                        string msg = socket.ReceiveFrameString();
+                        byte[] message = socket.ReceiveFrameBytes();
+                        HandleNewMessage(message);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,7 +66,6 @@ public class Embuser
             }
         }
     }
-
     public void HandleNewMessage(byte[] buffer)
     {
         Task.Run(() =>

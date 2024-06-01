@@ -4,12 +4,12 @@ using MessageBusDomain.Entities.Records;
 
 namespace MessageBusDomain.Entities;
 
-public class PushSocketInfo
+public class EmbuserInfo
 {
     public Address Address { get; init; }
     public Port Port { get; init; }
 
-    public PushSocketInfo(string address, string port)
+    public EmbuserInfo(string address, string port)
     {
         if (string.IsNullOrEmpty(address)) throw new ArgumentNullException(nameof(address));
         if (string.IsNullOrEmpty(port)) throw new ArgumentNullException(nameof(port));

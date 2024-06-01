@@ -12,58 +12,58 @@ namespace MessageBusDomain;
 public class Debuser
 {
     private readonly MessageBus messageBus;
-    private readonly PullSocketInfo pullSocketInfo;
+    private readonly DebuserInfo debuserInfo;
 
     private readonly ILogger<Debuser> logger;
 
-    public Debuser(PullSocketInfo pullSocketInfo, MessageBus messageBus, ILogger<Debuser> logger)
+    public Debuser(DebuserInfo debuserInfo, MessageBus messageBus, ILogger<Debuser> logger)
     {
         this.messageBus = messageBus;
-        this.pullSocketInfo = pullSocketInfo;
+        this.debuserInfo = debuserInfo;
         this.logger = logger;
     }
-    private readonly ConcurrentDictionary<string, TaskCompletionSource<PulledMessage>> requestCompletionSources = new ConcurrentDictionary<string, TaskCompletionSource<PulledMessage>>();
-    public void Run(CancellationToken cancellationToken)
+    private readonly ConcurrentDictionary<RoutingKey, TaskCompletionSource<PulledMessage>> requestCompletionSources = new ConcurrentDictionary<RoutingKey, TaskCompletionSource<PulledMessage>>();
+    public Task Run(CancellationToken cancellationToken)
     {
-        using (var routerSocket = new RouterSocket())
+        using (var socket = new RouterSocket($"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}"))
         {
-            routerSocket.Bind($"{pullSocketInfo.Address.AddressString}:{pullSocketInfo.Port.PortNumber}");
-
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
                 {
-                    
-                    var clientAddress = routerSocket.ReceiveFrameBytes();
-                    var empty = routerSocket.ReceiveFrameBytes(); 
-                    var message = routerSocket.ReceiveFrameBytes();
+                    RoutingKey routingKey;
+                    if(socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
+                    {     
+                        var clientAddress = socket.ReceiveFrameBytes();
+                        var message = socket.ReceiveFrameBytes(); 
 
-                    string clientAddressString = Encoding.UTF8.GetString(clientAddress);
-                    
-                    var completionSource = new TaskCompletionSource<PulledMessage>();
-                    requestCompletionSources[clientAddressString] = completionSource;
+                        // string clientAddressString = Encoding.UTF8.GetString(routingKey);
+                        
+                        var completionSource = new TaskCompletionSource<PulledMessage>();
+                        requestCompletionSources[routingKey] = completionSource;
 
-                    Task.Run(() =>
-                    {
-                        var pulledMessage = HandleNewRequestMessage(message);
-                        completionSource.SetResult(pulledMessage);
-                    });
+                        Task.Run(() =>
+                        {
+                            var pulledMessage = HandleNewRequestMessage(message);
+                            completionSource.SetResult(pulledMessage);
+                        });
 
-                    completionSource.Task.ContinueWith(task =>
-                    {
-                        var pulledMessage = task.Result;
-                        routerSocket.SendMoreFrame(clientAddress);
-                        routerSocket.SendMoreFrameEmpty();
-                        routerSocket.SendFrame(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(pulledMessage)));
-                        requestCompletionSources.TryRemove(clientAddressString, out _);
-                    });
-               
+                        completionSource.Task.ContinueWith(task =>
+                        {
+                            var pulledMessage = task.Result;
+                            socket.SendMoreFrame(routingKey);
+                            socket.SendMoreFrameEmpty();
+                            socket.SendFrame(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(pulledMessage)));
+                            requestCompletionSources.TryRemove(routingKey, out _);
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
                     logger.LogError(ex, "Failed to handle request message");
                 }
             }
+            return Task.CompletedTask;
         }
     }
 

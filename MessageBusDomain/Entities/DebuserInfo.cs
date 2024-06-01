@@ -4,12 +4,12 @@ using MessageBusDomain.Entities.Records;
 
 namespace MessageBusDomain.Entities;
 
-public class PullSocketInfo
+public class DebuserInfo
 {
     public Address Address { get; init; }
     public Port Port { get; init; }
 
-    public PullSocketInfo(string address, string port)
+    public DebuserInfo(string address, string port)
     {
         if(string.IsNullOrEmpty(address)) throw new ArgumentNullException(nameof(address));
         if(string.IsNullOrEmpty(port)) throw new ArgumentNullException(nameof(port));
