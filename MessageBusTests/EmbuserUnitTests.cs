@@ -19,7 +19,7 @@ public class EmbuserUnitTests
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         ILogger<Embuser> embuserLogger = NSubstitute.Substitute.For<ILogger<Embuser>>();
         messageBus = new MessageBus(logger, new List<QueueMessage>());
-        PushSocketInfo pushSocketInfo = new PushSocketInfo("0.0.0.0", "5555");
+        EmbuserInfo pushSocketInfo = new EmbuserInfo("0.0.0.0", "5555");
         embuser = new Embuser(pushSocketInfo, messageBus, embuserLogger);
     }
 

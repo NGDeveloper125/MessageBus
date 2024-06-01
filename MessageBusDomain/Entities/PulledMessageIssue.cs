@@ -8,4 +8,5 @@ public enum PulledMessageIssue
     NoTopicOrIdProvided = 2,
     NoMessageFoundWithThisId = 3,
     FailedToDeSerializeMessage = 4,
+    NullMessage = 5,
 }
