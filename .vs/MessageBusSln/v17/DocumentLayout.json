@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "C:\\Projects\\MessageBus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\messagebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\messagebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\pushsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\pushsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\pullsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\pullsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|c:\\projects\\messagebus\\messagebushost\\messagebushost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|solutionrelative:messagebushost\\messagebushost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\messagebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\messagebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|c:\\projects\\messagebus\\messagebushost\\logs\\log-20240601.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|solutionrelative:messagebushost\\logs\\log-20240601.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|c:\\projects\\messagebus\\messagebushost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CD88A71-EF0C-4D6C-B1A5-CD55EF8ED54B}|MessageBusHost\\MessageBusService.csproj|solutionrelative:messagebushost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\debuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\debuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\entities\\embuserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\entities\\embuserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|c:\\projects\\messagebus\\messagebusdomain\\entities\\debuserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9D6EAC8-06F5-42ED-876E-FB1BDC870325}|MessageBusDomain\\MessageBusDomain.csproj|solutionrelative:messagebusdomain\\entities\\debuserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projects\\MessageBus\\MessageBusDomain\\PushSocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MessageBusDomain\\PushSocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projects\\MessageBus\\MessageBusDomain\\PullSocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MessageBusDomain\\PullSocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +58,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "log-20240601.txt",
+              "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusHost\\logs\\log-20240601.txt",
+              "RelativeDocumentMoniker": "MessageBusHost\\logs\\log-20240601.txt",
+              "ToolTip": "C:\\Projects\\MessageBus\\MessageBusHost\\logs\\log-20240601.txt",
+              "RelativeToolTip": "MessageBusHost\\logs\\log-20240601.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-06-01T22:09:39.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmbuserInfo.cs",
+              "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\Entities\\EmbuserInfo.cs",
+              "RelativeDocumentMoniker": "MessageBusDomain\\Entities\\EmbuserInfo.cs",
+              "ToolTip": "C:\\Projects\\MessageBus\\MessageBusDomain\\Entities\\EmbuserInfo.cs",
+              "RelativeToolTip": "MessageBusDomain\\Entities\\EmbuserInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T22:08:26.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DebuserInfo.cs",
+              "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\Entities\\DebuserInfo.cs",
+              "RelativeDocumentMoniker": "MessageBusDomain\\Entities\\DebuserInfo.cs",
+              "ToolTip": "C:\\Projects\\MessageBus\\MessageBusDomain\\Entities\\DebuserInfo.cs",
+              "RelativeToolTip": "MessageBusDomain\\Entities\\DebuserInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T22:08:21.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Debuser.cs",
+              "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\Debuser.cs",
+              "RelativeDocumentMoniker": "MessageBusDomain\\Debuser.cs",
+              "ToolTip": "C:\\Projects\\MessageBus\\MessageBusDomain\\Debuser.cs",
+              "RelativeToolTip": "MessageBusDomain\\Debuser.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAcwCIAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T22:08:15.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "PushSocket.cs",
               "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\PushSocket.cs",
               "RelativeDocumentMoniker": "MessageBusDomain\\PushSocket.cs",
@@ -54,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "PullSocket.cs",
               "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\PullSocket.cs",
               "RelativeDocumentMoniker": "MessageBusDomain\\PullSocket.cs",
@@ -66,37 +134,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusHost\\Program.cs",
               "RelativeDocumentMoniker": "MessageBusHost\\Program.cs",
               "ToolTip": "C:\\Projects\\MessageBus\\MessageBusHost\\Program.cs",
               "RelativeToolTip": "MessageBusHost\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAA8AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T16:49:47.014Z"
+              "WhenOpened": "2024-05-12T16:49:47.014Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "MessageBusHost.cs",
               "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusHost\\MessageBusHost.cs",
               "RelativeDocumentMoniker": "MessageBusHost\\MessageBusHost.cs",
               "ToolTip": "C:\\Projects\\MessageBus\\MessageBusHost\\MessageBusHost.cs",
               "RelativeToolTip": "MessageBusHost\\MessageBusHost.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAQwBoAAAAAAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAwDIAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T16:49:47.719Z"
+              "WhenOpened": "2024-05-12T16:49:47.719Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MessageBus.cs",
               "DocumentMoniker": "C:\\Projects\\MessageBus\\MessageBusDomain\\MessageBus.cs",
               "RelativeDocumentMoniker": "MessageBusDomain\\MessageBus.cs",
               "ToolTip": "C:\\Projects\\MessageBus\\MessageBusDomain\\MessageBus.cs",
               "RelativeToolTip": "MessageBusDomain\\MessageBus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAFAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T16:47:14.342Z",
               "EditorCaption": ""

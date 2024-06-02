@@ -10,14 +10,19 @@ public class MessageBusHost : BackgroundService
 {
     private readonly IConfiguration configuration;
     private readonly MessageBusDomain.MessageBus messageBus;
-    private readonly ILogger<MessageBusDomain.MessageBus> logger;
-    private readonly ILogger<Embuser> EmbuserLogger;
-    private readonly ILogger<Debuser> DebuserLogger;
+    private readonly ILogger<MessageBusDomain.MessageBus> messageBusLogger;
+    private readonly ILogger<Embuser> embuserLogger;
+    private readonly ILogger<Debuser> debuserLogger;
+    private Task? embuserTask;
+    private Task? debuserTask;
 
-    public MessageBusHost(ILogger<MessageBusDomain.MessageBus> logger, IConfiguration configuration)
+    public MessageBusHost(ILogger<MessageBusDomain.MessageBus> messageBusLogger, ILogger<Embuser> embuserLogger, ILogger<Debuser> debuserLogger, IConfiguration configuration)
     {
-        this.logger = logger;
-        messageBus = new MessageBusDomain.MessageBus(logger, null);
+        this.messageBusLogger = messageBusLogger;
+        this.embuserLogger = embuserLogger;
+        this.debuserLogger = debuserLogger;
+
+        messageBus = new MessageBusDomain.MessageBus(messageBusLogger, null!);
         this.configuration = configuration;
     }
 
@@ -25,31 +30,41 @@ public class MessageBusHost : BackgroundService
     {
         try
         {    
-            PushSocketInfo pushSocketInfo = new PushSocketInfo(configuration["PushSocket:Address"], configuration["PushSocket:Port"]);
-            PullSocketInfo pullSocketInfo = new PullSocketInfo(configuration["PullSocket:Address"], configuration["PullSocket:Port"]);
+            EmbuserInfo embuserInfo = new EmbuserInfo(configuration["Embuser:Address"]!, configuration["Embuser:Port"]!);
+            DebuserInfo debuserInfo = new DebuserInfo(configuration["Debuser:Address"]!, configuration["Debuser:Port"]!);
 
-            Embuser embuser = new Embuser(pushSocketInfo, messageBus, EmbuserLogger);
-            Debuser debuser = new Debuser(pullSocketInfo, messageBus, DebuserLogger);
+            Embuser embuser = new Embuser(embuserInfo, messageBus, embuserLogger);
+            Debuser debuser = new Debuser(debuserInfo, messageBus, debuserLogger);
 
-            logger.LogInformation("Message Bus starting..");   
+            messageBusLogger.LogInformation("Message Bus starting..");   
             messageBus.Run(stoppingToken);  
 
-            logger.LogInformation($"Push Socket starting on  {pushSocketInfo.Address} port: {pushSocketInfo.Port}");   
-            Task.Run(() => { embuser.Run(stoppingToken); });
+            messageBusLogger.LogInformation($"Embuser starting on  {embuserInfo.Address} port: {embuserInfo.Port}");   
+            embuserTask = Task.Run(() => { embuser.Run(stoppingToken); });
 
-            logger.LogInformation($"Pull Socket starting on {pullSocketInfo.Address} port: {pullSocketInfo.Port}");   
-            Task.Run(() => { debuser.Run(stoppingToken); });
+            messageBusLogger.LogInformation($"Debuser starting on {debuserInfo.Address} port: {debuserInfo.Port}");   
+            debuserTask = Task.Run(() => { debuser.Run(stoppingToken); });
 
-            logger.LogInformation("Message Bus Running");   
-            while(!stoppingToken.IsCancellationRequested)
+            messageBusLogger.LogInformation("Message Bus Running");
+            while (!stoppingToken.IsCancellationRequested)
             {
-                await Task.Delay(5000, stoppingToken);
+                await Task.Delay(1, stoppingToken);
             }
         }
         catch(Exception ex) 
         {
-            logger.LogError($"MessageBus crashed: {ex.Message}");
+            messageBusLogger.LogError($"MessageBus crashed: {ex.Message}");
             throw;
         }
+    }
+
+    public override async Task StopAsync(CancellationToken cancellationToken)
+    {
+        messageBusLogger.LogInformation("Message Bus stopping...");
+
+        await Task.WhenAll(embuserTask!, debuserTask!);
+
+        messageBusLogger.LogInformation("Message Bus stopped.");
+        await base.StopAsync(cancellationToken);
     }
 }

@@ -21,27 +21,6 @@ public class Embuser
         this.embuserInfo = embuserInfo;
         this.logger = logger;
     }
-    // public Task Run(CancellationToken cancellationToken)
-    // {
-    //     using (var socket = new RouterSocket($"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}"))
-    //     {
-    //         while (!cancellationToken.IsCancellationRequested)
-    //         {
-    //             try
-    //             {
-    //                 RoutingKey routingKey = socket.ReceiveRoutingKey();
-    //                 string msg = socket.ReceiveFrameString();
-    //                 byte[] message = socket.ReceiveFrameBytes();
-    //                 HandleNewMessage(message);
-    //             }
-    //             catch (Exception ex)
-    //             {
-    //                 logger.LogError(ex, "Error while receiving new message");
-    //             }
-    //         }
-    //         return Task.CompletedTask;
-    //     }
-    // }
 
     public void Run(CancellationToken cancellationToken)
     {
