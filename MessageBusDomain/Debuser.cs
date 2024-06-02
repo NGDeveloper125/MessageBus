@@ -28,6 +28,7 @@ public class Debuser
     {
         using (var socket = new RouterSocket($"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}"))
         {
+            logger.LogInformation("Debuser is now listning for messages");
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
@@ -35,11 +36,9 @@ public class Debuser
                     RoutingKey routingKey = new RoutingKey();
                     if(socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
                     {     
+                        logger.LogDebug("New request message reseived");
                         var clientAddress = socket.ReceiveFrameBytes();
                         var message = socket.ReceiveFrameBytes(); 
-
-                        // string clientAddressString = Encoding.UTF8.GetString(routingKey);
-                        
                         var completionSource = new TaskCompletionSource<PulledMessage>();
                         requestCompletionSources[routingKey] = completionSource;
 
@@ -56,6 +55,7 @@ public class Debuser
                             socket.SendMoreFrameEmpty();
                             socket.SendFrame(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(pulledMessage)));
                             requestCompletionSources.TryRemove(routingKey, out _);
+                            logger.LogDebug("Request message handled and response sent");
                         });
                     }
                 }
@@ -77,9 +77,13 @@ public class Debuser
         }
         catch 
         {
-
+            logger.LogDebug("Failed to deserialize message");
         }
-        if (requestMsssage is null) return new PulledMessage(false, null!, PulledMessageIssue.FailedToDeSerializeMessage);
+        if (requestMsssage is null) 
+        {
+            logger.LogDebug("Message was not valid");
+            return new PulledMessage(false, null!, PulledMessageIssue.FailedToDeSerializeMessage);
+        }
         return messageBus.HandleRequestMessage(requestMsssage);
     }
 }
