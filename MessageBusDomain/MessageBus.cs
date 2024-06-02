@@ -19,9 +19,12 @@ public class MessageBus
         }
     }
 
-    public void Run(CancellationToken cancellationToken)
+    public async Task Run(CancellationToken cancellationToken)
     {
-
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            await Task.Delay(1, cancellationToken);
+        }
     }
 
     public void HandleNewMessage(MessageWrapper messageWrapper)
@@ -61,7 +64,7 @@ public class MessageBus
             return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
         }
         
-        return new PulledMessage(false, null, PulledMessageIssue.NoMessageFoundForThisTopic);
+        return new PulledMessage(false, null!, PulledMessageIssue.NoMessageFoundForThisTopic);
     }
 
     public QueueInfo GetQueueInfo()

@@ -23,7 +23,8 @@ public class Debuser
         this.logger = logger;
     }
     private readonly ConcurrentDictionary<RoutingKey, TaskCompletionSource<PulledMessage>> requestCompletionSources = new ConcurrentDictionary<RoutingKey, TaskCompletionSource<PulledMessage>>();
-    public Task Run(CancellationToken cancellationToken)
+    
+    public void Run(CancellationToken cancellationToken)
     {
         using (var socket = new RouterSocket($"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}"))
         {
@@ -31,7 +32,7 @@ public class Debuser
             {
                 try
                 {
-                    RoutingKey routingKey;
+                    RoutingKey routingKey = new RoutingKey();
                     if(socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
                     {     
                         var clientAddress = socket.ReceiveFrameBytes();
@@ -63,7 +64,6 @@ public class Debuser
                     logger.LogError(ex, "Failed to handle request message");
                 }
             }
-            return Task.CompletedTask;
         }
     }
 
