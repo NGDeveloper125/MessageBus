@@ -31,7 +31,7 @@ public class Embuser
             {
                 try
                 {
-                    RoutingKey routingKey;
+                    RoutingKey routingKey = new RoutingKey();
                     if (socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
                     {
                         logger.LogDebug("New push message received");

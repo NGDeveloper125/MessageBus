@@ -35,14 +35,19 @@ public class MessageBus
             logger.LogDebug("Message was not valid");
             return;
         }
-        QueueInfo queueInfo = QueueHandler.GetQueueInfo(queue);
-        if(queueInfo.Ids.Contains(messageWrapper.Id))
+        if (messageWrapper.Id is not null && messageWrapper.Id.IsValidId())
         {
-            logger.LogDebug("Message with this id already exists");
-            return;
+            QueueInfo queueInfo1 = QueueHandler.GetQueueInfo(queue);
+            if (queueInfo1.Ids.Contains(messageWrapper.Id))
+            {
+                logger.LogDebug("Message with this id already exists");
+                return;
+            }
         }
         logger.LogDebug("Adding message to queue");
         queue.Add(messageWrapper.GenerateQueueMessage());
+        QueueInfo queueInfo2 = QueueHandler.GetQueueInfo(queue);
+        logger.LogDebug($"Currently there are {queueInfo2.QueueCount} messages in the queue");
     }
 
     public PulledMessage HandleRequestMessage(RequestMsssage requestMsssage)
@@ -61,6 +66,7 @@ public class MessageBus
             if (queueMessage != null) 
             {
                 logger.LogDebug("Message found by id");
+                queue = QueueHandler.RemoveMessageFromQueue(queue, queueMessage);
                 return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
             }
             logger.LogDebug("No message found with this id");
@@ -72,6 +78,7 @@ public class MessageBus
         if(queueMessage != null)
         {
             logger.LogDebug("Message found by topic");
+            queue = QueueHandler.RemoveMessageFromQueue(queue, queueMessage);
             return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
         }
         
