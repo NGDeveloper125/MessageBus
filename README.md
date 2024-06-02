@@ -37,6 +37,7 @@ The MessageBus project focuses on creating a robust and scalable message bus tha
 
 ### Future Featurs
 - **Interface:** either a console or gui for running the messagebus in the front with continuous state of queue and sockets.
+- **Queue Recovery:** keep all messages on the queue in a local database in case of messagebus going down, on start up add all messages from the storage back into the queue.
 
 ### Contributing:
 Contributions to the MessageBus project are welcome! If you encounter any issues, have suggestions for improvements, or would like to add new features, please submit a pull request. Ensure that your contributions align with the project's coding standards and include appropriate tests.
