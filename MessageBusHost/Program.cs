@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using System.Threading;
 
 IConfiguration configuration = new ConfigurationBuilder()
                                 .AddJsonFile("MessageBusHostConfiguration.json")
@@ -31,3 +32,7 @@ IHost host = Host.CreateDefaultBuilder()
 
 
 await host.StartAsync();
+while (true)
+{
+    await Task.Delay(1);
+}

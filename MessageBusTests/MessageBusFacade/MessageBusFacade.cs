@@ -85,5 +85,4 @@ public static class MessageBusFacade
         if(pulledMessage != null) return pulledMessage;
         return new PulledMessage(false, string.Empty, PulledMessageIssue.NullMessage);
     }
-
 }

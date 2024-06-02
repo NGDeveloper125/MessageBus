@@ -1,4 +1,5 @@
 using MessageBusDomain.Entities.Records;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MessageBusDomain;
 
@@ -10,11 +11,9 @@ public static class QueueHandler
                                      .FirstOrDefault();
     
 
-
-    public static QueueInfo GetQueueInfo(List<QueueMessage> queue)
-    {
-        return new QueueInfo(queue.Count, GetUniqeTopics(queue), GetUniqeIds(queue));
-    }
+    public static QueueInfo GetQueueInfo(List<QueueMessage> queue) =>
+                    new QueueInfo(queue.Count, GetUniqeTopics(queue), GetUniqeIds(queue));
+    
 
     internal static QueueMessage? GetMessageById(List<QueueMessage> queue, Guid? id) =>
                                     queue.Where(qm => qm.Id == id).FirstOrDefault();
@@ -25,4 +24,10 @@ public static class QueueHandler
     private static List<Guid?> GetUniqeIds(List<QueueMessage> queue) => 
                                     queue.Distinct().Select(qm => qm.Id).ToList();
 
+    public static List<QueueMessage> RemoveMessageFromQueue(List<QueueMessage> queue, QueueMessage message)
+    {
+        queue.Remove(message);
+        return new List<QueueMessage>(queue);
+    }
+                                    
 }
