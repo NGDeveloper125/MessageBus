@@ -26,6 +26,7 @@ public class Embuser
     {
         using (var socket = new RouterSocket($"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}"))
         {
+            logger.LogInformation("Embuser is now listening for messages");
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
@@ -33,6 +34,7 @@ public class Embuser
                     RoutingKey routingKey;
                     if (socket.TryReceiveRoutingKey(TimeSpan.FromSeconds(1), ref routingKey))
                     {
+                        logger.LogDebug("New push message received");
                         string msg = socket.ReceiveFrameString();
                         byte[] message = socket.ReceiveFrameBytes();
                         HandleNewMessage(message);
@@ -53,7 +55,11 @@ public class Embuser
             {
                 string serializedMessage = Encoding.UTF8.GetString(buffer);
                 MessageWrapper? messageWrapper = JsonSerializer.Deserialize<MessageWrapper>(serializedMessage);
-                if (messageWrapper == null) return;
+                if (messageWrapper == null) 
+                {
+                    logger.LogDebug("Failed to deserialize message");
+                    return;
+                }
                 messageBus.HandleNewMessage(messageWrapper);
             }
             catch (Exception ex)

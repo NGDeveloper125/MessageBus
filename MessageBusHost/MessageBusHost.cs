@@ -36,13 +36,13 @@ public class MessageBusHost : BackgroundService
             Embuser embuser = new Embuser(embuserInfo, messageBus, embuserLogger);
             Debuser debuser = new Debuser(debuserInfo, messageBus, debuserLogger);
 
-            messageBusLogger.LogInformation("Message Bus starting..");   
+            messageBusLogger.LogInformation("Message Bus starting...");   
             messageBus.Run(stoppingToken);  
 
-            messageBusLogger.LogInformation($"Embuser starting on  {embuserInfo.Address} port: {embuserInfo.Port}");   
+            messageBusLogger.LogInformation($"Embuser starting on {embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}");   
             embuserTask = Task.Run(() => { embuser.Run(stoppingToken); });
 
-            messageBusLogger.LogInformation($"Debuser starting on {debuserInfo.Address} port: {debuserInfo.Port}");   
+            messageBusLogger.LogInformation($"Debuser starting on {debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}");   
             debuserTask = Task.Run(() => { debuser.Run(stoppingToken); });
 
             messageBusLogger.LogInformation("Message Bus Running");

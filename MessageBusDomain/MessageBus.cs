@@ -29,30 +29,41 @@ public class MessageBus
 
     public void HandleNewMessage(MessageWrapper messageWrapper)
     {
+        logger.LogDebug("Handling new push message");
         if (!messageWrapper.IsValid())
         {
+            logger.LogDebug("Message was not valid");
             return;
         }
         QueueInfo queueInfo = QueueHandler.GetQueueInfo(queue);
         if(queueInfo.Ids.Contains(messageWrapper.Id))
         {
+            logger.LogDebug("Message with this id already exists");
             return;
         }
+        logger.LogDebug("Adding message to queue");
         queue.Add(messageWrapper.GenerateQueueMessage());
     }
 
     public PulledMessage HandleRequestMessage(RequestMsssage requestMsssage)
     {
+        logger.LogDebug("Handling new request message");
         QueueMessage? queueMessage;
         if ((requestMsssage.Topic == null || requestMsssage.Topic == "") && requestMsssage.Id == null)
         {
+            logger.LogDebug("No topic or id provided");
             return new PulledMessage(false, null!, PulledMessageIssue.NoTopicOrIdProvided);
         }
 
         if (requestMsssage.Id is not null)
         {
             queueMessage = QueueHandler.GetMessageById(queue, requestMsssage.Id);
-            if (queueMessage != null) return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
+            if (queueMessage != null) 
+            {
+                logger.LogDebug("Message found by id");
+                return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
+            }
+            logger.LogDebug("No message found with this id");
             return new PulledMessage(false, null!, PulledMessageIssue.NoMessageFoundWithThisId);
         }
 
@@ -60,10 +71,11 @@ public class MessageBus
 
         if(queueMessage != null)
         {
-
+            logger.LogDebug("Message found by topic");
             return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
         }
         
+        logger.LogDebug("No message found with this topic");
         return new PulledMessage(false, null!, PulledMessageIssue.NoMessageFoundForThisTopic);
     }
 
