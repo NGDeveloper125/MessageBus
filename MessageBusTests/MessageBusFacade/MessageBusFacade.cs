@@ -48,7 +48,7 @@ public static class MessageBusFacade
             while(!cancellationToken.IsCancellationRequested)
             {
                 byte[] message;
-                if(socket.TryReceiveFrameBytes(TimeSpan.FromSeconds(1), out message))
+                if(socket.TryReceiveFrameBytes(TimeSpan.FromSeconds(1), out message!))
                 {
                     return TranslateByteToMessage(message);
                 }
@@ -61,7 +61,7 @@ public static class MessageBusFacade
     {
         using(var socket = new RequestSocket(embuserUri))
         {
-            RequestMsssage request = new RequestMsssage(null, id);
+            RequestMsssage request = new RequestMsssage(null!, id);
             string serializedRequest = JsonSerializer.Serialize(request);
             await Task.Delay(500);
             socket.SendFrame(serializedRequest);               
@@ -69,7 +69,7 @@ public static class MessageBusFacade
             while(!cancellationToken.IsCancellationRequested)
             {
                 byte[] message;
-                if(socket.TryReceiveFrameBytes(TimeSpan.FromSeconds(1), out message))
+                if(socket.TryReceiveFrameBytes(TimeSpan.FromSeconds(1), out message!))
                 {
                     return TranslateByteToMessage(message);
                 }

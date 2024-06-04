@@ -14,7 +14,7 @@ public class MessageBusUnitTests
     public void HandleNewMessage_DontEmbusMessage_WhenMessageHasEmptyTopicAndId()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        MessageBus messageBus = new MessageBus(logger, null);
+        MessageBus messageBus = new MessageBus(logger, null!);
         MessageWrapper messageWrapper = new MessageWrapper("", "payload", null);
 
         messageBus.HandleNewMessage(messageWrapper);
@@ -27,7 +27,7 @@ public class MessageBusUnitTests
     public void HandleNewMessage_DontEmbusMessage_WhenMessageHasEmptyTopicAndNotValidId()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        MessageBus messageBus = new MessageBus(logger, null);
+        MessageBus messageBus = new MessageBus(logger, null!);
         MessageWrapper messageWrapper = new MessageWrapper("", "payload", new Guid());
 
 
@@ -41,7 +41,7 @@ public class MessageBusUnitTests
     public void HandleNewMessage_DontEmbusMessage_WhenMessageHasEmptyPayload()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        MessageBus messageBus = new MessageBus(logger, null);
+        MessageBus messageBus = new MessageBus(logger, null!);
         MessageWrapper messageWrapper = new MessageWrapper("TestTopic", "", null);
 
         messageBus.HandleNewMessage(messageWrapper);
@@ -55,7 +55,7 @@ public class MessageBusUnitTests
     public void HandleNewMessage_EmbusMessage_WhenMessageIsValidWithTopic()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        MessageBus messageBus = new MessageBus(logger, null);
+        MessageBus messageBus = new MessageBus(logger, null!);
         MessageWrapper messageWrapper = new MessageWrapper("TestTopic", "TestPayload", null);
 
         messageBus.HandleNewMessage(messageWrapper);
@@ -69,7 +69,7 @@ public class MessageBusUnitTests
     public void HandleNewMessage_EmbusMessage_WhenMessageIsValidWithId()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        MessageBus messageBus = new MessageBus(logger, null);
+        MessageBus messageBus = new MessageBus(logger, null!);
         MessageWrapper messageWrapper = new MessageWrapper("", "TestPayload", Guid.NewGuid());
 
         messageBus.HandleNewMessage(messageWrapper);

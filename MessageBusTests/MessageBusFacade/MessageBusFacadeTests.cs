@@ -76,7 +76,7 @@ public class MessageBusFacadeTests
         messageBus.HandleNewMessage(new MessageWrapper(topic, payload, null));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(null, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(null!, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
@@ -106,7 +106,7 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         Guid id = Guid.NewGuid();
 
-        messageBus.HandleNewMessage(new MessageWrapper(null, payload, id));
+        messageBus.HandleNewMessage(new MessageWrapper(null!, payload, id));
 
         await Task.Delay(2000);
         PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(Guid.NewGuid(), $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
@@ -140,7 +140,7 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         Guid id = Guid.NewGuid();
 
-        messageBus.HandleNewMessage(new MessageWrapper(null, payload, id));
+        messageBus.HandleNewMessage(new MessageWrapper(null!, payload, id));
 
         await Task.Delay(2000);
         PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(id, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());

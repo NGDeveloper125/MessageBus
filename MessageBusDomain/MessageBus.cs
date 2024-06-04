@@ -8,22 +8,14 @@ namespace MessageBusDomain;
 public class MessageBus
 {
     private readonly ILogger<MessageBus> logger;
-    private List<QueueMessage> queue;
+    public List<QueueMessage> Queue { get; private set;}
     public MessageBus(ILogger<MessageBus> logger, List<QueueMessage> previousMessages)
     {
         this.logger = logger;
-        queue = new List<QueueMessage>();
+        Queue = new List<QueueMessage>();
         if (previousMessages != null)
         {
-            queue.AddRange(previousMessages);
-        }
-    }
-
-    public async Task Run(CancellationToken cancellationToken)
-    {
-        while (!cancellationToken.IsCancellationRequested)
-        {
-            await Task.Delay(1, cancellationToken);
+            Queue.AddRange(previousMessages);
         }
     }
 
@@ -37,7 +29,7 @@ public class MessageBus
         }
         if (messageWrapper.Id is not null && messageWrapper.Id.IsValidId())
         {
-            QueueInfo queueInfo1 = QueueHandler.GetQueueInfo(queue);
+            QueueInfo queueInfo1 = QueueHandler.GetQueueInfo(Queue);
             if (queueInfo1.Ids.Contains(messageWrapper.Id))
             {
                 logger.LogDebug("Message with this id already exists");
@@ -45,8 +37,8 @@ public class MessageBus
             }
         }
         logger.LogDebug("Adding message to queue");
-        queue.Add(messageWrapper.GenerateQueueMessage());
-        QueueInfo queueInfo2 = QueueHandler.GetQueueInfo(queue);
+        Queue.Add(messageWrapper.GenerateQueueMessage());
+        QueueInfo queueInfo2 = QueueHandler.GetQueueInfo(Queue);
         logger.LogDebug($"Currently there are {queueInfo2.QueueCount} messages in the queue");
     }
 
@@ -62,23 +54,23 @@ public class MessageBus
 
         if (requestMsssage.Id is not null)
         {
-            queueMessage = QueueHandler.GetMessageById(queue, requestMsssage.Id);
+            queueMessage = QueueHandler.GetMessageById(Queue, requestMsssage.Id);
             if (queueMessage != null) 
             {
                 logger.LogDebug("Message found by id");
-                queue = QueueHandler.RemoveMessageFromQueue(queue, queueMessage);
+                Queue = QueueHandler.RemoveMessageFromQueue(Queue, queueMessage);
                 return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
             }
             logger.LogDebug("No message found with this id");
             return new PulledMessage(false, null!, PulledMessageIssue.NoMessageFoundWithThisId);
         }
 
-        queueMessage = QueueHandler.GetNextMessageByTopic(queue, requestMsssage.Topic!);
+        queueMessage = QueueHandler.GetNextMessageByTopic(Queue, requestMsssage.Topic!);
 
         if(queueMessage != null)
         {
             logger.LogDebug("Message found by topic");
-            queue = QueueHandler.RemoveMessageFromQueue(queue, queueMessage);
+            Queue = QueueHandler.RemoveMessageFromQueue(Queue, queueMessage);
             return new PulledMessage(true, queueMessage.Payload, PulledMessageIssue.NoIssue);
         }
         
@@ -88,7 +80,7 @@ public class MessageBus
 
     public QueueInfo GetQueueInfo()
     {
-        return QueueHandler.GetQueueInfo(queue);
+        return QueueHandler.GetQueueInfo(Queue);
     }
 
 }
