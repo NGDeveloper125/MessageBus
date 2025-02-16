@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pw/2gtPF7dI=",
+  "dgSpecHash": "R5jDpBLXb4A=",
   "success": true,
-  "projectFilePath": "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
+  "projectFilePath": "c:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gnere\\.nuget\\packages\\asyncio\\0.1.69\\asyncio.0.1.69.nupkg.sha512",
     "C:\\Users\\gnere\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
