@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\Projects\\MessageBus\\MessageBusDomain\\MessageBusDomain.csproj",
         "projectName": "MessageBusDomain",
         "projectPath": "C:\\Projects\\MessageBus\\MessageBusDomain\\MessageBusDomain.csproj",
-        "packagesPath": "C:\\Users\\gnere\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Nimrod.Gaudin\\.nuget\\packages\\",
         "outputPath": "C:\\Projects\\MessageBus\\MessageBusDomain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gnere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nimrod.Gaudin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -93,14 +93,14 @@
         "projectUniqueName": "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
         "projectName": "MessageBusTests",
         "projectPath": "C:\\Projects\\MessageBus\\MessageBusTests\\MessageBusTests.csproj",
-        "packagesPath": "C:\\Users\\gnere\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Nimrod.Gaudin\\.nuget\\packages\\",
         "outputPath": "C:\\Projects\\MessageBus\\MessageBusTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gnere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nimrod.Gaudin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -182,7 +182,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

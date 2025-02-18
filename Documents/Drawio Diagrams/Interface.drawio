@@ -1,0 +1,99 @@
+<mxfile host="65bd71144e">
+    <diagram id="eoP0BkNaZgy7leDRKoTp" name="Page-1">
+        <mxGraphModel dx="3788" dy="1968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="MessageBus Interface" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" parent="1" vertex="1">
+                    <mxGeometry x="189" width="472" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;" parent="1" vertex="1">
+                    <mxGeometry x="-30" y="80" width="910" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="{ Bus&amp;nbsp; Name }" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="90" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="swimlane;startSize=0;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="-20" y="140" width="250" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Bus General Info" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="45" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Address -&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="20" y="35" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Status -&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="20" y="95" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Port -&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="20" y="65" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Status -&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="20" y="125" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Call&lt;br&gt;for&lt;br&gt;Data" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;fontSize=20;exitX=0.454;exitY=1.022;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="3" target="31" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="swimlane;startSize=0;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="245" y="140" width="360" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Queues List" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="8" vertex="1">
+                    <mxGeometry x="100" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Queue Name - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="8" vertex="1">
+                    <mxGeometry y="40" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Queue Name - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="8" vertex="1">
+                    <mxGeometry y="80" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Queue Name - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="8" vertex="1">
+                    <mxGeometry y="120" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Queue Name - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="8" vertex="1">
+                    <mxGeometry y="160" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="swimlane;startSize=0;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="140" width="250" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Errors" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="18" vertex="1">
+                    <mxGeometry x="45" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Error - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="18" vertex="1">
+                    <mxGeometry y="80" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Error - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="180" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Error - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="260" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Error - General Info - Expend" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="300" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-30" y="620" width="910" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="MessageBus Container" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" parent="1" vertex="1">
+                    <mxGeometry x="285" y="779" width="280" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Data" style="edgeStyle=none;html=1;fontSize=20;exitX=1;exitY=0;exitDx=0;exitDy=0;" parent="1" source="31" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="467" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="Interface&lt;br style=&quot;font-size: 20px;&quot;&gt;Endpoint" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="560" width="120" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="&amp;nbsp;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;GeneralInfo :&amp;nbsp;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;ports : {&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&quot;portname&quot; : &quot;port1&quot;,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&quot;port&quot; : &quot;1234&quot;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;},&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;Status : &quot;Running&quot;,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;Condition : &quot;Good&quot;,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;Traffic : &quot;Low&quot;,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;},&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;Queues : [&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;QueueName : &quot;queue1&quot;,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;br&gt;&amp;nbsp;}&lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;align=left;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="340" width="430" height="780" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=40;width=34;endSize=23.46;endWidth=58;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="510" y="470" as="sourcePoint"/>
+                        <mxPoint x="1020" y="470" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

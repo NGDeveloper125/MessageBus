@@ -1,0 +1,41 @@
+
+.bus {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color:beige;
+    align-items: start;
+    justify-content: stretch;
+    border-width: 5px;
+    border-style: solid;
+    height: 285px;
+}
+
+.bus-general-info {
+    flex: 0.5;
+    padding-bottom: 20px ;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    overflow: auto;
+}
+
+.bus-queues {
+    flex: 2;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    height: 284px;
+    overflow: auto;
+}
+
+.bus-errors {
+    flex: 2;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    height: 284px;
+    overflow: auto;
+}

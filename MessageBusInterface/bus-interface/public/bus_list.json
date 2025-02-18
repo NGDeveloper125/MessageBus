@@ -1,0 +1,134 @@
+{
+    "Buses" :
+    [
+        {
+            "GeneralInfo" : {
+                "Name" : "bus-test-1",
+                "Address" : "0.0.0.0",
+                "EmbusPort" : "333",
+                "DebusPort" : "321",
+                "State" : "Running"
+            },
+            "Queues" : [
+                {
+                    "Name" : "test-queue-1",
+                    "Type" : "topic",
+                    "State" : "high traffic",
+                    "Size" : "140"
+                },
+                {
+                    "Name" : "test-queue-2",
+                    "Type" : "topic",
+                    "State" : "high traffic",
+                    "Size" : "420"
+                },
+                {
+                    "Name" : "test-queue-3",
+                    "Type" : "ids",
+                    "State" : "low traffic",
+                    "Size" : "0"
+                }
+            ],
+            "Errors" : [
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                }
+            ]
+        },
+        {
+            "GeneralInfo" : {
+                "Name" : "bus-test-2",
+                "Address" : "1.0.2.0",
+                "EmbusPort" : "123",
+                "DebusPort" : "321",
+                "State" : "Running"
+            },
+            "Queues" : [
+                {
+                    "Name" : "test-queue-1",
+                    "Type" : "topic",
+                    "State" : "normal traffic",
+                    "Size" : "4"
+                },
+                {
+                    "Name" : "test-queue-2",
+                    "Type" : "topic",
+                    "State" : "normal traffic",
+                    "Size" : "7"
+                },
+                {
+                    "Name" : "test-queue-3",
+                    "Type" : "ids",
+                    "State" : "low traffic",
+                    "Size" : "0"
+                }
+            ],
+            "Errors" : [
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                }
+            ]
+        },
+        {
+            "GeneralInfo" : {
+                "Name" : "bus-test-3",
+                "Address" : "4.0.2.0",
+                "EmbusPort" : "123",
+                "DebusPort" : "321",
+                "State" : "Stopped"
+            },
+            "Queues" : [
+                {
+                    "Name" : "test-queue-1",
+                    "Type" : "topic",
+                    "State" : "normal traffic",
+                    "Size" : "4"
+                },
+                {
+                    "Name" : "test-queue-2",
+                    "Type" : "topic",
+                    "State" : "high traffic",
+                    "Size" : "420"
+                },
+                {
+                    "Name" : "test-queue-3",
+                    "Type" : "ids",
+                    "State" : "low traffic",
+                    "Size" : "0"
+                }
+            ],
+            "Errors" : [
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                },
+                {
+                    "Description" : "error details"
+                }
+            ]
+        }
+    ]
+}
