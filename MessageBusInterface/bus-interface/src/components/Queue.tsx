@@ -1,13 +1,22 @@
 import { Queue } from './BusComponents';
+import './Queue.css';
 
 type QueueProps = {
     queue: Queue
 }
 
 export const QueueComponent = (props: QueueProps) => {
+    let queueColor = 'lime';
+    if(props.queue.state === 'high traffic') {
+        queueColor = 'red';
+    } else if(props.queue.state === 'low traffic')
+    {
+        queueColor = 'lightblue';
+    }
+
     return (
-        <div>
-            <p>Name: {props.queue.name} | Type: {props.queue.type} | State: {props.queue.state} | Size: {props.queue.size}</p>
+        <div className='container' style={{backgroundColor: queueColor}}>
+            <p>{props.queue.name} | {props.queue.type} | {props.queue.state} | Messages in queue: {props.queue.size}</p>
         </div>
     )
 }

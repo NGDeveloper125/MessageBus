@@ -1,4 +1,5 @@
 import { BusError } from "./BusComponents";
+import './BusError.css';
 
 type BusErrorProps = {
     busError: BusError
@@ -6,7 +7,7 @@ type BusErrorProps = {
 
 export const BusErrorComponent = (props: BusErrorProps) => {
     return (
-        <div>
+        <div className="container">
             <p>{props.busError.description}</p>
         </div>
     )

@@ -10,7 +10,7 @@ The message bus facilitates efficient and reliable communication between service
 - Logging Library: Serilog
 
 ## Project Overview
-The MessageBus project focuses on creating a robust and scalable message bus that enables seamless communication between multiple services. By leveraging functional programming techniques, the codebase is designed to be highly modular, testable, and maintainable. The adoption of TDD ensures that the system is thoroughly tested and reliable, while DDD principles help in creating a domain-centric clean architecture that aligns with the business requirements.
+The MessageBus project focuses on creating a robust and scalable message bus that enables seamless communication between multiple services. By leveraging functional programming techniques, the codebase is designed to be highly modular, testable, and maintainable. The adoption of TDD ensures that the system is thoroughly tested and reliable, while DDD principles help in creating a domain-centric clean architecture that aligns with the business requirements. The project also includes useful tools around the bus like an interface to monitor the bus and some simple microservices for testing and a setup services that allows you to simply spin up the bus and the tools in a container. 
 
 ### Projects included -
 - **Domain:** librery project that holds the bus logic including all records, entities, extensions and the messagebus object.
@@ -21,14 +21,19 @@ The MessageBus project focuses on creating a robust and scalable message bus tha
 - **Generic Communication:** The message bus provides a generic interface for communication, allowing services to exchange messages without tight coupling.
 - **Id/Topic Base Messages:** The messages can be pushed and pull by topic, in a normal services structure, or by id for processes that need to have a more specific approach.
 - **Queue Recovery:** When the message bus is going down, all messages on the queue will be saved in a local file and will be return to queue when message bus is back on. 
+- **Interface:** A local/remote web page that allows you to track you message-bus.
 
-### Project Components -
+## Project Components -
+### MessageBus - 
 - **MessageBusHost:** a class that derived of the BackgroundService base class, host the messagebus, embuser and debuser. 
 - **MessageBus:** a class that holds the message queue and handle embusing and debusing messages.
 - **Embuser:** a listening object for push messages.
 - **Debuser:** a listening object for pull request messages.
 - **MessageBusFacade:** a client side object to push and pull messages from and to the bus (this object should be implemented at any service that wish to use the bus)
   
+### Interface - 
+- **Bus-Interface:** A one page React project with a simple structure that allows the user to track a one or more MessageBus services by address and present useful information about them.   
+
 ### Implementation Guid Lines - 
 - **Domain-Driven Design:** The message bus is designed with DDD principles in mind, focusing on the core domain concepts and their interactions.
 - **Functional Programming:** The codebase is implemented using functional programming principles, emphasizing immutability, pure functions, and composability.
