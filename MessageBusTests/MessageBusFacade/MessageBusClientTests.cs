@@ -1,14 +1,12 @@
 using Xunit;
 using FluentAssertions;
-using NSubstitute;
 using MessageBusDomain;
-using Microsoft.Extensions.Logging;
-using MessageBusDomain.Entities.Records;
 using MessageBusDomain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace MessageBusTests;
 
-public class MessageBusFacadeTests 
+public class MessageBusClientTests 
 {
     private MessageBus messageBus;
     private readonly DebuserInfo debuserInfo;
@@ -17,12 +15,12 @@ public class MessageBusFacadeTests
     private Task debuserTask;
     private Task embuserTask;
 
-    public MessageBusFacadeTests()
+    public MessageBusClientTests()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         ILogger<Debuser> debuserLogger = NSubstitute.Substitute.For<ILogger<Debuser>>();
         ILogger<Embuser> embuserLogger = NSubstitute.Substitute.For<ILogger<Embuser>>();
-        messageBus = new MessageBus(logger, new List<QueueMessage>());
+        messageBus = new MessageBus(logger, new List<MessageBusDomain.Entities.QueueMessage>());
         debuserInfo = new DebuserInfo("127.0.0.1", "5555");
         embuserInfo = new EmbuserInfo("127.0.0.1", "5556");
 
@@ -46,9 +44,9 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         string topic = "topic1";
         await Task.Delay(2000);
-        await MessageBusFacade.PushMessageToBus(payload, topic, $"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}");
+        await MessageBusClient.PushMessageToBus(payload, topic, $"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}");
         await Task.Delay(2000);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(1);
         await DisposeAsync();
@@ -60,9 +58,9 @@ public class MessageBusFacadeTests
         Guid id = Guid.NewGuid();
         string payload = "payload1";
         await Task.Delay(2000);
-        await MessageBusFacade.PushMessageToBus(payload, id, $"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}");
+        await MessageBusClient.PushMessageToBus(payload, id, $"{embuserInfo.Address.AddressString}:{embuserInfo.Port.PortNumber}");
         await Task.Delay(2000);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(1);
         await DisposeAsync();
@@ -73,10 +71,10 @@ public class MessageBusFacadeTests
     {
         string payload = "payload1";
         string topic = "topic1";
-        messageBus.HandleNewMessage(new MessageWrapper(topic, payload, null));
+        messageBus.HandleNewMessage(new MessageBusDomain.Entities.MessageWrapper(topic, payload, null));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(null!, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusClient.PullMessageFromBus(null!, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
@@ -89,10 +87,10 @@ public class MessageBusFacadeTests
     {
         string payload = "payload1";
         string topic = "topic1";
-        messageBus.HandleNewMessage(new MessageWrapper(topic, payload, null));
+        messageBus.HandleNewMessage(new MessageBusDomain.Entities.MessageWrapper(topic, payload, null));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus("topic2", $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusClient.PullMessageFromBus("topic2", $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
@@ -106,10 +104,10 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         Guid id = Guid.NewGuid();
 
-        messageBus.HandleNewMessage(new MessageWrapper(null!, payload, id));
+        messageBus.HandleNewMessage(new MessageBusDomain.Entities.MessageWrapper(null!, payload, id));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(Guid.NewGuid(), $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusClient.PullMessageFromBus(Guid.NewGuid(), $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeFalse();
@@ -123,10 +121,10 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         string topic = "topic1";
 
-        messageBus.HandleNewMessage(new MessageWrapper(topic, payload, null));
+        messageBus.HandleNewMessage(new MessageBusDomain.Entities.MessageWrapper(topic, payload, null));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(topic, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusClient.PullMessageFromBus(topic, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeTrue();
@@ -140,10 +138,10 @@ public class MessageBusFacadeTests
         string payload = "payload1";
         Guid id = Guid.NewGuid();
 
-        messageBus.HandleNewMessage(new MessageWrapper(null!, payload, id));
+        messageBus.HandleNewMessage(new MessageBusDomain.Entities.MessageWrapper(null!, payload, id));
 
         await Task.Delay(2000);
-        PulledMessage pulledMessage = await MessageBusFacade.PullMessageFromBus(id, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
+        PulledMessage pulledMessage = await MessageBusClient.PullMessageFromBus(id, $"{debuserInfo.Address.AddressString}:{debuserInfo.Port.PortNumber}", new CancellationToken());
         await Task.Delay(2000);
 
         pulledMessage.SuccessfullyPulled.Should().BeTrue();

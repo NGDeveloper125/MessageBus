@@ -1,15 +1,11 @@
-
 using System.Text;
 using System.Text.Json;
-using MessageBusDomain.Entities;
-using MessageBusDomain.Entities.Records;
 using NetMQ;
 using NetMQ.Sockets;
 
-namespace MessageBusTests;
-public static class MessageBusFacade
+namespace InterfaceGateway;
+public static class MessageBusClient
 {
-
     public async static Task PushMessageToBus<T>(T message, string topic, string embuserUri)
     {
         string serializedMessage = JsonSerializer.Serialize(message);
@@ -86,3 +82,20 @@ public static class MessageBusFacade
         return new PulledMessage(false, string.Empty, PulledMessageIssue.NullMessage);
     }
 }
+
+public enum PulledMessageIssue
+{
+    NoIssue = 0,
+    NoMessageFoundForThisTopic = 1,
+    NoTopicOrIdProvided = 2,
+    NoMessageFoundWithThisId = 3,
+    FailedToDeSerializeMessage = 4,
+    NullMessage = 5,
+}
+public record Address(string AddressString);
+public record Port(int PortNumber);
+public record MessageWrapper(string Topic, string Payload, Guid? Id);
+public record QueueInfo(int QueueCount, List<string> Topics, List<Guid?> Ids);
+public record QueueMessage(string Topic, string Payload, Guid? Id, DateTime EmbusTime);
+public record RequestMsssage(string Topic, Guid? Id);
+public record PulledMessage(bool SuccessfullyPulled, string Payload, PulledMessageIssue Issue);

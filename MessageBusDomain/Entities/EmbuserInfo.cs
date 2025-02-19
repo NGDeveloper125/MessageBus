@@ -1,7 +1,5 @@
 using System.Net;
 
-using MessageBusDomain.Entities.Records;
-
 namespace MessageBusDomain.Entities;
 
 public class EmbuserInfo

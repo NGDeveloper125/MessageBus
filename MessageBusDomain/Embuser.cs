@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using MessageBusDomain.Entities;
-using MessageBusDomain.Entities.Records;
 using System.Text.Json;
 using System.Text;
 using NetMQ.Sockets;
 using NetMQ;
-using System.Net.Sockets;
 
 namespace MessageBusDomain;
 

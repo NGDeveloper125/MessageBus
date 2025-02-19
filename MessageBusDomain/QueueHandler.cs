@@ -1,4 +1,4 @@
-using MessageBusDomain.Entities.Records;
+using MessageBusDomain.Entities;
 
 namespace MessageBusDomain;
 
