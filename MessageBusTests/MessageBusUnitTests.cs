@@ -1,10 +1,7 @@
 using Xunit;
-using NSubstitute;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using MessageBusDomain;
-using MessageBusDomain.Entities;
-using MessageBusDomain.Entities.Records;
 
 namespace MessageBusTests;
 
@@ -15,10 +12,10 @@ public class MessageBusUnitTests
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         MessageBus messageBus = new MessageBus(logger, null!);
-        MessageWrapper messageWrapper = new MessageWrapper("", "payload", null);
+        MessageBusDomain.Entities.MessageWrapper messageWrapper = new MessageBusDomain.Entities.MessageWrapper("", "payload", null);
 
         messageBus.HandleNewMessage(messageWrapper);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(0);
     }
@@ -28,11 +25,11 @@ public class MessageBusUnitTests
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         MessageBus messageBus = new MessageBus(logger, null!);
-        MessageWrapper messageWrapper = new MessageWrapper("", "payload", new Guid());
+        MessageBusDomain.Entities.MessageWrapper messageWrapper = new MessageBusDomain.Entities.MessageWrapper("", "payload", new Guid());
 
 
         messageBus.HandleNewMessage(messageWrapper);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(0);
     }
@@ -42,10 +39,10 @@ public class MessageBusUnitTests
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         MessageBus messageBus = new MessageBus(logger, null!);
-        MessageWrapper messageWrapper = new MessageWrapper("TestTopic", "", null);
+        MessageBusDomain.Entities.MessageWrapper messageWrapper = new MessageBusDomain.Entities.MessageWrapper("TestTopic", "", null);
 
         messageBus.HandleNewMessage(messageWrapper);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(0);
     }
@@ -56,10 +53,10 @@ public class MessageBusUnitTests
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         MessageBus messageBus = new MessageBus(logger, null!);
-        MessageWrapper messageWrapper = new MessageWrapper("TestTopic", "TestPayload", null);
+        MessageBusDomain.Entities.MessageWrapper messageWrapper = new MessageBusDomain.Entities.MessageWrapper("TestTopic", "TestPayload", null);
 
         messageBus.HandleNewMessage(messageWrapper);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(1);
         queueInfo.Topics.Should().Contain("TestTopic");
@@ -70,10 +67,10 @@ public class MessageBusUnitTests
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
         MessageBus messageBus = new MessageBus(logger, null!);
-        MessageWrapper messageWrapper = new MessageWrapper("", "TestPayload", Guid.NewGuid());
+        MessageBusDomain.Entities.MessageWrapper messageWrapper = new MessageBusDomain.Entities.MessageWrapper("", "TestPayload", Guid.NewGuid());
 
         messageBus.HandleNewMessage(messageWrapper);
-        QueueInfo queueInfo = messageBus.GetQueueInfo();
+        MessageBusDomain.Entities.QueueInfo queueInfo = messageBus.GetQueueInfo();
 
         queueInfo.QueueCount.Should().Be(1);
         queueInfo.Ids.Should().Contain(messageWrapper.Id);
@@ -83,56 +80,56 @@ public class MessageBusUnitTests
     public void HandleMessageRequest_ReturnIssueMessage_WhenMessageHasEmptyTopic()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        var queueMessage = new QueueMessage("TestTopic", "TestPayload", new Guid(), DateTime.Now);
+        var queueMessage = new MessageBusDomain.Entities.QueueMessage("TestTopic", "TestPayload", new Guid(), DateTime.Now);
 
-        var queueMessages = new List<QueueMessage>
+        var queueMessages = new List<MessageBusDomain.Entities.QueueMessage>
         {
             queueMessage
         };
         var messageBus = new MessageBus(logger, queueMessages);
-        var requestMsssage = new RequestMsssage("", null);
+        var requestMsssage = new MessageBusDomain.Entities.RequestMsssage("", null);
 
-        PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
+        MessageBusDomain.Entities.PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
 
         pulledMessage.SuccessfullyPulled.Should().Be(false);
-        pulledMessage.Issue.Should().Be(PulledMessageIssue.NoTopicOrIdProvided);
+        pulledMessage.Issue.Should().Be(MessageBusDomain.Entities.PulledMessageIssue.NoTopicOrIdProvided);
     }
 
     [Fact]
     public void HandleMessageRequest_ReturnIssueMessage_WhenMessageTopicWasNotFound()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        var queueMessage = new QueueMessage("TestTopic", "TestPayload", new Guid(), DateTime.Now);
+        var queueMessage = new MessageBusDomain.Entities.QueueMessage("TestTopic", "TestPayload", new Guid(), DateTime.Now);
 
-        var queueMessages = new List<QueueMessage>
+        var queueMessages = new List<MessageBusDomain.Entities.QueueMessage>
         {
             queueMessage
         };
         var messageBus = new MessageBus(logger, queueMessages);
-        var requestMsssage = new RequestMsssage("TestTopic1", null);
+        var requestMsssage = new MessageBusDomain.Entities.RequestMsssage("TestTopic1", null);
 
-        PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
+        MessageBusDomain.Entities.PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
 
         pulledMessage.SuccessfullyPulled.Should().Be(false);
-        pulledMessage.Issue.Should().Be(PulledMessageIssue.NoMessageFoundForThisTopic);
+        pulledMessage.Issue.Should().Be(MessageBusDomain.Entities.PulledMessageIssue.NoMessageFoundForThisTopic);
     }
 
     [Fact]
     public void HandleMessageRequest_ReturnIssueMessage_WhenThereIsNoMessageWithThisId()
     {
         ILogger<MessageBus> logger = NSubstitute.Substitute.For<ILogger<MessageBus>>();
-        var queueMessage = new QueueMessage("TestTopic", "TestPayload", Guid.NewGuid(), DateTime.Now);
+        var queueMessage = new MessageBusDomain.Entities.QueueMessage("TestTopic", "TestPayload", Guid.NewGuid(), DateTime.Now);
 
-        var queueMessages = new List<QueueMessage>
+        var queueMessages = new List<MessageBusDomain.Entities.QueueMessage>
         {
             queueMessage
         };
         var messageBus = new MessageBus(logger, queueMessages);
-        var requestMsssage = new RequestMsssage(null!, Guid.NewGuid());
+        var requestMsssage = new MessageBusDomain.Entities.RequestMsssage(null!, Guid.NewGuid());
 
-        PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
+        MessageBusDomain.Entities.PulledMessage pulledMessage = messageBus.HandleRequestMessage(requestMsssage);
 
         pulledMessage.SuccessfullyPulled.Should().Be(false);
-        pulledMessage.Issue.Should().Be(PulledMessageIssue.NoMessageFoundWithThisId);
+        pulledMessage.Issue.Should().Be(MessageBusDomain.Entities.PulledMessageIssue.NoMessageFoundWithThisId);
     }
 }

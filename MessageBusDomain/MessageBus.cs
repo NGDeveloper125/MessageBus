@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using MessageBusDomain.Entities.Records;
+﻿using Microsoft.Extensions.Logging;
 using MessageBusDomain.Entities;
 namespace MessageBusDomain;
 

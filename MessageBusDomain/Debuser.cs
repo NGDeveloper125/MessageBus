@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using MessageBusDomain.Entities;
-using MessageBusDomain.Entities.Records;
 using System.Text;
 using System.Text.Json;
 using NetMQ.Sockets;

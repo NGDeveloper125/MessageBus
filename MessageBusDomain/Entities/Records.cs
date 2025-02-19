@@ -1,5 +1,5 @@
 
-namespace MessageBusDomain.Entities.Records;
+namespace MessageBusDomain.Entities;
 
 public record Address(string AddressString);
 public record Port(int PortNumber);
